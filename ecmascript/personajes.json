@@ -1,0 +1,11 @@
+{
+  "nombre": "Vegeta",
+  "nivel": 8000,
+  "raza": "Sayajin",
+  "planeta": "Vegeta",
+  "aparariciones": {
+    "sayajin": true,
+    "frezer": true,
+    "cell": true
+  }
+}
