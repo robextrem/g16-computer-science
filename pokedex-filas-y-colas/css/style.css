@@ -1,0 +1,57 @@
+div.empty,
+#pokemon-list {
+  height: 24px;
+  margin-bottom: 24px;
+}
+#pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  padding: 0;
+  gap: 0.5rem;
+}
+#pokemon-list > li {
+  list-style: none;
+}
+li {
+  text-align: center;
+  border: 1px solid #29aafd;
+  border-radius: 4px;
+  background-color: #29aafd;
+  color: white;
+}
+.card > i {
+  padding: 16px 16px 0 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.card:active > i::before {
+  animation-name: heart;
+  -webkit-animation-name: heart;
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+}
+i.bi-heart-fill {
+  color: red;
+}
+i.bi-heart {
+  color: white;
+}
+.card {
+  cursor: pointer;
+}
+
+@keyframes heart {
+  0% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(0) translate(0px, 0x);
+  }
+}
