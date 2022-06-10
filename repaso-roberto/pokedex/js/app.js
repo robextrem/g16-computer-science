@@ -24,17 +24,13 @@ function render(){
                     <span class="badge text-bg-danger">${pokemones[i].type[1]}</span>`;
             */
             console.log(pokemones[i].type)
-
             let tipos = pokemones[i].type;
-
             /*for(var j=0; j<pokemones[i].type.length; j++){
                 card+=`<span class="badge text-bg-primary">${pokemones[i].type[j]}</span>`
             }*/
-
             for(var j=0; j<tipos.length; j++){
                 card+=`<span class="badge text-bg-primary">${tipos[j]}</span>`;
             }
-
             /*Ya los manipule*/
 
         card+=`</div>
@@ -42,7 +38,6 @@ function render(){
         </div>`;
         document.querySelector("#resultado").innerHTML += card;
 
-        if(i==10) break;
         //console.log(pokemones[i].name);
     }
     //termina el for
