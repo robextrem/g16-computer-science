@@ -6,17 +6,18 @@ const queue = document.querySelector("#queue");
 const pokemonList = document.querySelector("#pokemon-list");
 const emptyFavorites = document.querySelector(".empty");
 
-// Obtenemos los pokemos almacenados en el localStorage
+// Obtenemos los pokémones almacenados en el localStorage
 const storage = JSON.parse(localStorage.getItem("@favorites"));
-// Sí existen pokemos almacenados en el localStorage la variable favorites se iguala a los pokemons almacenados, sino de declara como un Array vacío 
-const favorites = storage.length > 0 ? storage : [];
+
+// Sí existen pokémones almacenados en el localStorage la variable favorites se iguala a los pokémones almacenados, sino de declara como un Array vacío
+const favorites = storage !== null ? storage : [];
 
 const renderList = () => {
-  // Renderizamos la lista de los pokemons favoritos
+  // Renderizamos la lista de los pokémones favoritos
   pokemonList.innerHTML = "";
   favorites.reverse();
   if (favorites.length === 0) {
-    emptyFavorites.innerHTML = "¡No has agregado pokemons a tus favoritos!";
+    emptyFavorites.innerHTML = "¡No has agregado pokémones a tus favoritos!";
     pokemonList.setAttribute("hidden", true);
     emptyFavorites.removeAttribute("hidden");
   } else {
@@ -40,16 +41,17 @@ const removeHeart = (id) => {
 };
 
 const reloadHearts = () => {
-  // Recargamos los pokemons favoritos almacenados en el localStorage al cargar la aplicación por primera vez
-  storage.forEach((id) => {
-    let card = Array.from(document.getElementById(id).childNodes)
-    card.forEach((child) => {
-      if (child.tagName === "I") {
-        child.classList.remove("bi-heart");
-        child.classList.add("bi-heart-fill");
-      }
+  // Recargamos los pokémones favoritos almacenados en el localStorage al cargar la aplicación por primera vez
+  storage !== null &&
+    storage.forEach((id) => {
+      let card = Array.from(document.getElementById(id).childNodes);
+      card.forEach((child) => {
+        if (child.tagName === "I") {
+          child.classList.remove("bi-heart");
+          child.classList.add("bi-heart-fill");
+        }
+      });
     });
-  });
 };
 
 stack.addEventListener("click", () => {
@@ -89,7 +91,7 @@ const addFavorites = (e) => {
   favorites.reverse();
   if (favorites.indexOf(e.currentTarget.id) === -1) {
     if (favorites.length < 10) {
-      // Agregamos el id detectado en la card que se hizo click 
+      // Agregamos el id detectado en la card que se hizo click
       favorites.push(e.currentTarget.id);
       // Obtenemos los hijos del div con clase card y se lo enviamos toggleHeard para poner o quitar la clase para el icono de corazón vacío o relleno
       toggleHeard(e.currentTarget.childNodes);
@@ -102,8 +104,8 @@ const addFavorites = (e) => {
 };
 
 // Renderizamos todas las card al cargar la aplicación por primera vez
-const render = (pokemons) => {
-  pokemons.forEach((pokemon) => {
+const render = (pokemones) => {
+  pokemones.forEach((pokemon) => {
     let cardContainer = document.createElement("div");
     let card = document.createElement("div");
     let img = document.createElement("img");
@@ -136,7 +138,15 @@ const render = (pokemons) => {
   renderList();
 };
 
-// Obtenemos los pokemons almacenados en el archivo pokemons.json
+// Obtenemos los pokémones almacenados en el archivo pokémones.json
 fetch("data/pokemons.json")
   .then((response) => response.json())
   .then((data) => render(data));
+
+window.addEventListener("load", () => {
+  renderList();
+});
+
+document.addEventListener('onLoad', ()=>{
+  console.log('cargando')
+})
