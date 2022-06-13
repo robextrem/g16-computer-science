@@ -104,8 +104,8 @@ const addFavorites = (e) => {
 };
 
 // Renderizamos todas las card al cargar la aplicación por primera vez
-const render = (pokémones) => {
-  pokémones.forEach((pokemon) => {
+const render = (pokemones) => {
+  pokemones.forEach((pokemon) => {
     let cardContainer = document.createElement("div");
     let card = document.createElement("div");
     let img = document.createElement("img");
@@ -142,3 +142,11 @@ const render = (pokémones) => {
 fetch("data/pokemons.json")
   .then((response) => response.json())
   .then((data) => render(data));
+
+window.addEventListener("load", () => {
+  renderList();
+});
+
+document.addEventListener('onLoad', ()=>{
+  console.log('cargando')
+})
