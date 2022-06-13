@@ -14,6 +14,7 @@ const favorites = storage !== null ? storage : [];
 
 const reverse = (favorites) => favorites.reverse();
 
+// Si necesitamos no reordenar el array debemos recibir false como primer parámetro de la función renderList(false)
 const renderList = (order = true) => {
   // Renderizamos la lista de los pokémones favoritos
   pokemonList.innerHTML = "";

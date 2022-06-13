@@ -1,6 +1,6 @@
 let pokemones = [];
 
-fetch('https://raw.githubusercontent.com/oicrruf/g15-computer-science/develop/ejercicios/pokedex-registro/json/pokemon.json')
+fetch('https://raw.githubusercontent.com/robextrem/g16-computer-science/develop/pokedex-filas-y-colas/data/pokemons.json')
 .then(response => response.json())
 .then(data => {
     pokemones = data;
