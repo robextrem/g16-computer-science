@@ -12,10 +12,12 @@ const storage = JSON.parse(localStorage.getItem("@favorites"));
 // Sí existen pokémones almacenados en el localStorage la variable favorites se iguala a los pokémones almacenados, sino de declara como un Array vacío
 const favorites = storage !== null ? storage : [];
 
-const renderList = () => {
+const reverse = (favorites) => favorites.reverse();
+
+const renderList = (order = true) => {
   // Renderizamos la lista de los pokémones favoritos
   pokemonList.innerHTML = "";
-  favorites.reverse();
+  order && reverse(favorites);
   if (favorites.length === 0) {
     emptyFavorites.innerHTML = "¡No has agregado pokémones a tus favoritos!";
     pokemonList.setAttribute("hidden", true);
@@ -56,7 +58,7 @@ const reloadHearts = () => {
 
 stack.addEventListener("click", () => {
   // Eliminamos elementos del Array favorites por pila
-  favorites.reverse();
+  reverse(favorites);
   let pokemon = favorites.pop();
   removeHeart(pokemon);
   renderList();
@@ -64,7 +66,7 @@ stack.addEventListener("click", () => {
 
 queue.addEventListener("click", () => {
   // Eliminamos elementos del Array favorites por cola
-  favorites.reverse();
+  reverse(favorites);
   let pokemon = favorites.shift();
   removeHeart(pokemon);
   renderList();
@@ -88,7 +90,7 @@ const toggleHeard = (card) => {
 };
 
 const addFavorites = (e) => {
-  favorites.reverse();
+  reverse(favorites);
   if (favorites.indexOf(e.currentTarget.id) === -1) {
     if (favorites.length < 10) {
       // Agregamos el id detectado en la card que se hizo click
@@ -135,7 +137,7 @@ const render = (pokemones) => {
       addFavorites(e);
     });
   });
-  renderList();
+  renderList(false);
 };
 
 // Obtenemos los pokémones almacenados en el archivo pokémones.json
@@ -144,9 +146,6 @@ fetch("data/pokemons.json")
   .then((data) => render(data));
 
 window.addEventListener("load", () => {
-  renderList();
+  renderList(false);
 });
 
-document.addEventListener('onLoad', ()=>{
-  console.log('cargando')
-})
