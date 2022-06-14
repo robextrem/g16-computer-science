@@ -3,9 +3,7 @@ const reload = document.querySelector("#reload");
 
 const filterByName = (allPokemons, searching) =>
   allPokemons.filter((pokemon) => {
-    return pokemon.name.toLowerCase() 
-    === searching.toLowerCase() 
-    ;
+    return pokemon.name.toLowerCase() === searching.toLowerCase();
   });
 
 const search = (searching) => {
@@ -14,7 +12,6 @@ const search = (searching) => {
     .then((response) => response.json())
     .then((allPokemons) => {
       let byName = filterByName(allPokemons, searching);
-      console.log(byName);
       render(byName);
     });
 };
@@ -33,6 +30,6 @@ formPokemon.addEventListener("submit", (e) => {
   search(e.target.pokemon.value);
 });
 
-reload.addEventListener("click", (e) => {
+reload.addEventListener("click", () => {
   reloadPokemons();
 });

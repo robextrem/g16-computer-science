@@ -14,9 +14,9 @@ div.empty,
 }
 li {
   text-align: center;
-  border: 1px solid #29aafd;
+  border: 1px solid #929393;
   border-radius: 4px;
-  background-color: #29aafd;
+  background-color: #929393;
   color: white;
 }
 .card > i {
@@ -41,7 +41,11 @@ i.bi-heart {
 .card {
   cursor: pointer;
 }
-
+.actions{
+  display: flex;
+  justify-content:flex-end;
+align-items: flex-end;  
+}
 @keyframes heart {
   0% {
     opacity: 100%;
