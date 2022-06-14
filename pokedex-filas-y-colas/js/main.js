@@ -108,6 +108,7 @@ const addFavorites = (e) => {
 
 // Renderizamos todas las card al cargar la aplicación por primera vez
 const render = (pokemones) => {
+  app.innerHTML = ""
   pokemones.forEach((pokemon) => {
     let cardContainer = document.createElement("div");
     let card = document.createElement("div");
