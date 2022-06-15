@@ -1,17 +1,22 @@
 let pokemones = [];
+const formSearch=document.querySelector("#search-pokemon");
+const resetList=document.querySelector("#reset");
 
-fetch('js/pokemones.json')
+fetch('https://raw.githubusercontent.com/robextrem/g16-computer-science/develop/repaso-roberto/pokedex/js/pokemones.json')
 .then(response => response.json())
 .then(data => {
     pokemones = data;
-    render();
+    render(pokemones);
 });
 
-function render(){
+function render(pokemones){
+ 
+    document.querySelector("#resultado").innerHTML = "";
+
     //recorremos el array pokemones
     //for / forEach / for in
     for(var i in pokemones){
-        console.log(pokemones[i])
+        //console.log(pokemones[i])
         let card = `<div class="col-3">
             <div class="card mt-4">
                 <img src="${pokemones[i].ThumbnailImage}" class="card-img-top">
@@ -23,13 +28,12 @@ function render(){
             card+=`<span class="badge text-bg-primary">${pokemones[i].type[0]}</span>
                     <span class="badge text-bg-danger">${pokemones[i].type[1]}</span>`;
             */
-            console.log(pokemones[i].type)
             let tipos = pokemones[i].type;
             /*for(var j=0; j<pokemones[i].type.length; j++){
                 card+=`<span class="badge text-bg-primary">${pokemones[i].type[j]}</span>`
             }*/
             for(var j=0; j<tipos.length; j++){
-                card+=`<span class="badge text-bg-primary">${tipos[j]}</span>`;
+                card+=`<span class="badge ms-1 text-bg-primary">${tipos[j]}</span>`;
             }
             /*Ya los manipule*/
 
@@ -55,3 +59,23 @@ function render(){
     }
     */
 }
+
+function search(p){
+    let results = pokemones.filter(function(pokemon){
+        //return pokemon.name.toLowerCase().includes(p);
+        return pokemon.name === pokemon
+    });
+    render(results);
+}
+
+resetList.addEventListener("click", function(e){
+    e.preventDefault();
+    render(pokemones);
+    return false;
+});
+
+formSearch.addEventListener("submit", function(e){
+    e.preventDefault();
+    search(e.target.pokemon.value);
+    return false;
+});

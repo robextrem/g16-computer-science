@@ -1,7 +1,0 @@
-1. Diseñar la tarjeta de pokemon (X)
-2. Obtener respuesta del api (x)
-3. Guardar la respuesta en una variable (x)
-4. Definir que informacion quiero utilizar (x)
-5. Funcion que recorra mi objeto (x)
-6. La informarcion que recabe la quiero pintar en mi HTML (x)
-7. Hacer pruebas (x)
