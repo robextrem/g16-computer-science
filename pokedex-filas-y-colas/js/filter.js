@@ -3,10 +3,10 @@ const reload = document.querySelector("#reload");
 
 const filterByAbilities = (allPokemons, searching) =>
   allPokemons.filter((pokemon) => {
-    return (
-      pokemon.abilities.map((ability) => ability.toLowerCase()) ==
-      searching.toLowerCase()
-    );
+    console.log(pokemon.abilities.map((ability) => ability.toLowerCase()));
+    return pokemon.abilities
+      .map((ability) => ability.toLowerCase())
+      .includes(searching.toLowerCase());
   });
 
 const filterByWords = (allPokemons, searching) =>
