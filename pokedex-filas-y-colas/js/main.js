@@ -116,8 +116,9 @@ const render = (pokemones) => {
     let cardBody = document.createElement("div");
     let cardTitle = document.createElement("h5");
     let heart = document.createElement("i");
-
+    
     img.setAttribute("src", pokemon.ThumbnailImage);
+    img.setAttribute('loading', 'lazy')
     cardTitle.innerText = pokemon.name;
     cardContainer.classList.add("col-lg-2", "col-sm-4", "pb-3");
     card.classList.add("card", "bg-dark");

@@ -3,7 +3,6 @@ const reload = document.querySelector("#reload");
 
 const filterByAbilities = (allPokemons, searching) =>
   allPokemons.filter((pokemon) => {
-    console.log(pokemon.abilities.map((ability) => ability.toLowerCase()));
     return pokemon.abilities
       .map((ability) => ability.toLowerCase())
       .includes(searching.toLowerCase());
