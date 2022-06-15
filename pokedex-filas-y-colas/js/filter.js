@@ -1,9 +1,17 @@
 const formPokemon = document.querySelector("#search-pokemon");
 const reload = document.querySelector("#reload");
 
-const filterByName = (allPokemons, searching) =>
+const filterByAbilities = (allPokemons, searching) =>
   allPokemons.filter((pokemon) => {
-    return pokemon.name.toLowerCase() === searching.toLowerCase();
+    return (
+      pokemon.abilities.map((ability) => ability.toLowerCase()) ==
+      searching.toLowerCase()
+    );
+  });
+
+const filterByWords = (allPokemons, searching) =>
+  allPokemons.filter((pokemon) => {
+    return pokemon.name.toLowerCase().includes(searching.toLowerCase());
   });
 
 const search = (searching) => {
@@ -11,8 +19,10 @@ const search = (searching) => {
   fetch("data/pokemons.json")
     .then((response) => response.json())
     .then((allPokemons) => {
-      let byName = filterByName(allPokemons, searching);
-      render(byName);
+      let byWords = filterByWords(allPokemons, searching);
+      let byAbilities = filterByAbilities(allPokemons, searching);
+      let unique = new Set([...byWords, ...byAbilities]);
+      render(unique);
     });
 };
 
