@@ -14,6 +14,11 @@ const filterByWords = (allPokemons, searching) =>
     return pokemon.name.toLowerCase().includes(searching.toLowerCase());
   });
 
+const filterByNumber = (allPokemons, searching) =>
+  allPokemons.filter((pokemon) => {
+    return pokemon.number === searching;
+  });
+
 const search = (searching) => {
   // Obtenemos los pokémones almacenados en el archivo pokémones.json
   fetch("data/pokemons.json")
@@ -21,7 +26,8 @@ const search = (searching) => {
     .then((allPokemons) => {
       let byWords = filterByWords(allPokemons, searching);
       let byAbilities = filterByAbilities(allPokemons, searching);
-      let unique = new Set([...byWords, ...byAbilities]);
+      let byNumber = filterByNumber(allPokemons, searching);
+      let unique = new Set([...byWords, ...byAbilities, ...byNumber]);
       render(unique);
     });
 };
