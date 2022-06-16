@@ -132,7 +132,7 @@ function render(pokemones){
         column.classList.add("col-3")
 
         let card = `<div class="card mt-4">
-                <img src="${pokemones[i].ThumbnailImage}" class="card-img-top">
+                <img src="${pokemones[i].ThumbnailImage}" loading="lazy" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">${pokemones[i].name}</h5>
                     <p class="card-text">#${pokemones[i].number}</p>`;
