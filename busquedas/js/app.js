@@ -5,6 +5,11 @@ const input = document.querySelector("#pokemon");
 const buttonWater = document.querySelector("#button-water");
 const buttonFire = document.querySelector("#button-fire");
 const buttonElectric = document.querySelector("#button-electric");
+const buttonAsc = document.querySelector("#button-asc");
+const buttonDesc = document.querySelector("#button-desc");
+const buttonAscNum = document.querySelector("#button-asc-num");
+const buttonDescNum = document.querySelector("#button-desc-num");
+
 
 /**Esta es una busqueda lineal
  * 
@@ -30,6 +35,10 @@ input.addEventListener("keyup",search)
 buttonWater.addEventListener("click",searchWater);
 buttonFire.addEventListener("click", searchFire);
 buttonElectric.addEventListener("click", searchElectric)
+buttonAsc.addEventListener("click", orderAsc)
+buttonDesc.addEventListener("click",orderDesc)
+buttonAscNum.addEventListener("click",reiniciar)
+buttonDescNum.addEventListener("click",orderNumDesc)
 
 fetch('js/pokemones.json')
 .then(response => response.json())
@@ -38,8 +47,55 @@ fetch('js/pokemones.json')
     render(pokemones);
 });
 
+
+function reiniciar(){
+    pokemones.sort(function(pokemon1,pokemon2){
+        if(pokemon1.number > pokemon2.number){
+            return 1; //Si empieza con una letra mayor enviala a la derecha +1
+        }else{
+            return -1; //Si empieza con una letra menor enviala a la izquierda -1
+        }
+    });
+    render(pokemones);
+}
+
+
+function orderNumDesc(){
+    pokemones.sort(function(pokemon1,pokemon2){
+        if(pokemon1.number < pokemon2.number){
+            return 1; //Si empieza con una letra mayor enviala a la derecha +1
+        }else{
+            return -1; //Si empieza con una letra menor enviala a la izquierda -1
+        }
+    });
+    render(pokemones);
+}
+
+function orderAsc(){
+    pokemones.sort(function(pokemon1,pokemon2){
+        if(pokemon1.name > pokemon2.name){
+            return 1; //Si empieza con una letra mayor enviala a la derecha +1
+        }else{
+            return -1; //Si empieza con una letra menor enviala a la izquierda -1
+        }
+    });
+    render(pokemones);
+}
+
+function orderDesc(){
+    pokemones.sort(function(pokemon1,pokemon2){
+        if(pokemon1.name < pokemon2.name){
+            return 1; //Si no empieza con una letra mayor enviala a la derecha +1
+        }else{
+            return -1; //Si no empieza con una letra menor enviala a la izquierda -1
+        }
+    });
+    render(pokemones);
+}
+
 function search(e){
     e.preventDefault();
+    reiniciar(); // <-- Reicinio el ordern numerico ascendente 
     let s = input.value;
     let pokemonesFiltrados = pokemones.filter(function(pokemon){
         return pokemon.name.toLowerCase().includes(s.toLowerCase());
