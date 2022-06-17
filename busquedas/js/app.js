@@ -1,5 +1,12 @@
 let pokemones = [];
+
 let favoritos = [];
+if(localStorage.getItem("favoritosStorage")){
+    favoritos= JSON.parse(localStorage.getItem("favoritosStorage"));
+}
+
+
+
 const formSearch = document.querySelector("#search-pokemon");
 const result = document.querySelector("#resultado");
 const input = document.querySelector("#pokemon");
@@ -161,20 +168,25 @@ function render(pokemones){
             let name = miboton.dataset.nombre;
             let num = miboton.dataset.number;
             let index = miboton.dataset.index;
+            let aux_favoritos =[];
 
-                let aux_favoritos = favoritos.filter(function(favorito){
+            if(favoritos.length>0){            
+                aux_favoritos = favoritos.filter(function(favorito){
                     return favorito.number === num;
                 });
+            }
 
-                console.log(aux_favoritos);
+            if(aux_favoritos.length<=0){
+                //Si ya existe en el arreglo
+                favoritos.push(pokemones[index]);
+                let f = JSON.stringify(favoritos);
+                localStorage.setItem("favoritosStorage", f);
 
-                if(aux_favoritos.length<=0){
-                    //Si ya existe en el arreglo
-                    favoritos.push(pokemones[index]);
-                    alert(`El pokemon ${name} se ha agregado a favoritos`);
-                }else{
-                    alert(`El pokemon ${name} ya estaba en la lista`);
-                }
+
+                alert(`El pokemon ${name} se ha agregado a favoritos`);
+            }else{
+                alert(`El pokemon ${name} ya estaba en la lista`);
+            }
 
         });
 
