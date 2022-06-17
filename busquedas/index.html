@@ -14,10 +14,33 @@
         <form class="row mt-3" id="search-pokemon">
             <div class="col-md-6">
               <label for="pokemon" class="visually-hidden">Nombre</label>
-              <input type="text" class="form-control" id="pokemon" placeholder="¿Qué pokemon estás buscando?">
+              <input data-longitud="1.5" data-altura="grande" data-roberto="Si" type="text" class="form-control" id="pokemon" placeholder="¿Qué pokemon estás buscando?">
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+            </div>
+            <div class="col-auto">
+              <select class="form-select" id="tipos">
+                  <option value="">Todos los tipos</option>
+                  <option value="steel">Acero</option>
+                  <option value="water">Agua</option>
+                  <option value="bug">Bicho</option>
+                  <option value="dragon">Dragón</option>
+                  <option value="electic">Eléctrico</option>
+                  <option value="ghost">Fantasma</option>
+                  <option value="fire">Fuego</option>
+                  <option value="fairy">Hada</option>
+                  <option value="ice">Hielo</option>
+                  <option value="fighting">Lucha</option>
+                  <option value="normal">Normal</option>
+                  <option value="grass">Planta</option>
+                  <option value="psychic">Psíquico</option>
+                  <option value="rock">Roca</option>
+                  <option value="dark">Siniestro</option>
+                  <option value="ground">Tierra</option>
+                  <option value="poison">Veneno</option>
+                  <option value="flying">Volador</option>
+              </select>
             </div>
             <div class="col-auto">
                 <button type="button" id="button-water" class="btn btn-primary mb-3">Agua</button>
@@ -39,6 +62,9 @@
             </div>
             <div class="col-auto">
               <button type="button" id="button-desc-num" class="btn btn-info mb-3">9 -> 1</button>
+            </div>
+            <div class="col-auto">
+              <button type="button" id="button-favoritos" class="btn btn-info mb-3">Favoritos</button>
             </div>
           </form>
         <div class="row is-multiline" id="resultado">
